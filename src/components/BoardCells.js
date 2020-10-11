@@ -1,6 +1,7 @@
 import React from 'react';
 
 const BoardCells = ({ index, setMarkers, marker, gameOn }) => {
+
     const classes = ["vert", "hori"];
     let style = null;
     if (index == 1 || index == 7) {
@@ -16,7 +17,7 @@ const BoardCells = ({ index, setMarkers, marker, gameOn }) => {
         return setMarkers(index);
     }
     return (
-        <td className={style ? gameOn ? style.concat(' cursor-pointer') : style : gameOn ? 'cursor-pointer' : ''} onClick={gameOn ? updateMaker : null}>{marker}</td>
+        <td className={style ? gameOn && marker == '' ? style.concat(' cursor-pointer') : style : gameOn ? 'cursor-pointer' : ''} onClick={gameOn && marker == '' ? updateMaker : null}>{marker}</td>
     );
 }
 
