@@ -7,14 +7,16 @@ import ResetButton from './components/ResetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = (props) => {
-    const [markers, setMarkers] = useState(['', '', '', '', '', '', '', '', '']);
-    // const [markers, setMarkers] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-    const [message, setMessage] = useState('Welcome To the tic tac toe!');
-
-    const [xo, setXO] = useState('O');
-
-    const [game, setGame] = useState(true);
-
+    const [markers, setMarkers] = useState(
+        localStorage.getItem('markers') ? JSON.parse(localStorage.getItem('markers')) : ['', '', '', '', '', '', '', '', '']
+    );
+    const [message, setMessage] = useState(
+        localStorage.getItem('message') ? JSON.parse(localStorage.getItem('message')) : 'Welcome To the tic tac toe!'
+    );
+    const [xo, setXO] = useState(localStorage.getItem('xo') ? JSON.parse(localStorage.getItem('xo')) : 'O');
+    const [game, setGame] = useState(
+        localStorage.getItem('game') ? JSON.parse(localStorage.getItem('game')) : true
+    );
     useEffect(() => {
         if (
             markers[0] == markers[1] && markers[0] == markers[2] && markers[0] != '' ||
@@ -28,14 +30,18 @@ const App = (props) => {
         ) {
             setMessage(`${xo == 'O' ? 'X' : 'O'} is Winner!`)
             setGame(false);
-        }
-
-        if (!markers.includes('')) {
+        } else if (!markers.includes('')) {
             setMessage(`Draw!`);
             setGame(false);
         }
-
     })
+
+    useEffect(() => {
+        localStorage.setItem('markers', JSON.stringify(markers));
+        localStorage.setItem('message', JSON.stringify(message));
+        localStorage.setItem('game', JSON.stringify(game));
+        localStorage.setItem('xo', JSON.stringify(xo));
+    }, [markers]);
 
 
     const updateMarkers = (boardCellId) => {
