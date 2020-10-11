@@ -11,7 +11,7 @@ const App = (props) => {
         localStorage.getItem('markers') ? JSON.parse(localStorage.getItem('markers')) : ['', '', '', '', '', '', '', '', '']
     );
     const [message, setMessage] = useState(
-        localStorage.getItem('message') ? JSON.parse(localStorage.getItem('message')) : 'Welcome To the tic tac toe!'
+        localStorage.getItem('message') ? JSON.parse(localStorage.getItem('message')) : 'Welcome To the tic tac toe! Player O can start'
     );
     const [xo, setXO] = useState(localStorage.getItem('xo') ? JSON.parse(localStorage.getItem('xo')) : 'O');
     const [game, setGame] = useState(
@@ -33,6 +33,8 @@ const App = (props) => {
         } else if (!markers.includes('')) {
             setMessage(`Draw!`);
             setGame(false);
+        } else if (!markers.every(el => el == '')) {
+            setMessage(`Player ${xo == 'O' ? 'O' : 'X'} Turn!`)
         }
     })
 
@@ -61,7 +63,7 @@ const App = (props) => {
         setMarkers(['', '', '', '', '', '', '', '', '']);
         setXO('O');
         setGame(true);
-        setMessage(`Welcome To the tic tac toe!`);
+        setMessage(`Welcome To the tic tac toe! Player O can start`);
     }
 
     return (
