@@ -17,7 +17,7 @@ const BoardCells = ({ index, setMarkers, marker, gameOn }) => {
         return setMarkers(index);
     }
     return (
-        <td className={style ? gameOn && marker == '' ? style.concat(' cursor-pointer') : style : gameOn ? 'cursor-pointer' : ''} onClick={gameOn && marker == '' ? updateMaker : null}>{marker}</td>
+        <td className={style ? gameOn && marker == '' ? style.concat(' cursor-pointer') : style : gameOn && marker == '' ? 'cursor-pointer' : ''} onClick={gameOn && marker == '' ? updateMaker : null}>{marker}</td>
     );
 }
 
