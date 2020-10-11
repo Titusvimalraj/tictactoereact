@@ -2,7 +2,6 @@ import React from 'react';
 import BoardCells from './BoardCells';
 
 const BoardRows = ({ rows, rowIndex, setMarkers, gameOn }) => {
-    console.log(rows);
     return (
         <tr>
             {
